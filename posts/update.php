@@ -63,7 +63,7 @@
                 <div class="form-outline mb-4">
                     <input type="file" name="img" id="form2Example1" class="form-control" placeholder="image" />
                 </div>
-
+                <?php echo $rows->img; ?>
 
                 <!-- Submit button -->
                 <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Update</button>
