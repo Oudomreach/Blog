@@ -65,6 +65,7 @@
                 </div>
                 <?php echo $rows->img; ?>
                 <?php echo $rows->body; ?>
+                <?php echo $rows->title; ?>
 
                 <!-- Submit button -->
                 <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Update</button>
