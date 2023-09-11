@@ -9,13 +9,21 @@
         $select->execute();
         $posts = $select->fetch(PDO::FETCH_OBJ);
 
-        unlink("images/" . $posts->img . "");
+        if($_SESSION['user_id'] !== $posts->user_id){
+            header("location: http://localhost/CLeanBlog/index.php");
 
-        $delete = $conn->prepare(("DELETE FROM posts WHERE id = :id "));
-        $delete->execute([
-            ':id'=>$id,
-        ]);
+        }
+        else{
+            unlink("images/" . $posts->img . "");
 
+            $delete = $conn->prepare(("DELETE FROM posts WHERE id = :id "));
+            $delete->execute([
+                ':id'=>$id,
+            ]);
+    
+        }
+
+        
         // echo "<script>alert('Post has been Deleted')</script>";
 
         header("location: http://localhost/CLeanBlog/index.php");

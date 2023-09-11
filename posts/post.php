@@ -47,8 +47,10 @@
                             &middot; Images by
                             <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
                         </p> -->
-                        <a href="http://localhost/CleanBlog/posts/delete.php?del_id=<?php echo $post->id; ?>" class="btn btn-danger text-center float-end">Delete</a>
-                        <a href="update.php?upd_id=<?php echo $post->id; ?>" class="btn btn-warning text-center">Update</a>
+                        <?php if(isset($_SESSION['user_id']) AND $_SESSION['user_id'] == $post->user_id): ?>
+                            <a href="http://localhost/CleanBlog/posts/delete.php?del_id=<?php echo $post->id; ?>" class="btn btn-danger text-center float-end">Delete</a>
+                            <a href="update.php?upd_id=<?php echo $post->id; ?>" class="btn btn-warning text-center">Update</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

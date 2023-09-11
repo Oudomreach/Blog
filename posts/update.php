@@ -11,12 +11,19 @@
         $select->execute();
         $rows = $select->fetch(PDO::FETCH_OBJ);
 
+        if($_SESSION['user_id'] !== $rows->user_id){
+            header("location: http://localhost/CleanBlog/index.php");
+        }
+
         // second query
         if(isset($_POST['submit'])){
             if ($_POST['title'] == '' OR $_POST['subtitle'] == '' OR $_POST['body'] == '') {
                 echo '<script>alert("Please Input all the field.")</script>'; 
             }
             else{
+
+                unlink("images/" . $rows->img . "");
+
                 $title = $_POST['title'];
                 $subtitle = $_POST['subtitle'];
                 $body = $_POST['body'];
@@ -59,13 +66,13 @@
                     <input type="text" name="body" value="<?php echo $rows->body; ?>" id="form2Example1" class="form-control" placeholder="body" />
                 </div>
 
-                
+                <?php echo "<img src='images/".$rows->img."' width=500px height=320px>"; ?>
                 <div class="form-outline mb-4">
                     <input type="file" name="img" id="form2Example1" class="form-control" placeholder="image" />
+
                 </div>
-                <?php echo $rows->img; ?>
-                <?php echo $rows->body; ?>
-                <?php echo $rows->title; ?>
+                
+
 
                 <!-- Submit button -->
                 <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Update</button>
