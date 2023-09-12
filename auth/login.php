@@ -12,11 +12,15 @@
 
     if (isset($_SESSION['username'])) {
         header('location: http://localhost/CleanBlog/index.php');
+    }else{
+
     }
 
     if (isset($_POST['submit'])) {
         if ($_POST['email'] == '' OR $_POST['password'] == '')  {
-            echo "Please Input Email & Password";
+            echo "<div class='alert alert-danger text-center text-white role='alert'>
+                    Please Input Email & Password.
+                  </div>";
         }
         else{
             $email = $_POST['email'];
@@ -34,8 +38,17 @@
                     $_SESSION['user_id'] = $row['id'];
 
                     header("location: ../index.php");
-
                 }
+                else{
+                  echo "<div class='alert alert-danger text-center text-white role='alert'>
+                          Incorrect Password
+                        </div>";
+                }
+            }
+            else{
+              echo "<div class='alert alert-danger text-center text-white role='alert'>
+                      Wrong Email
+                    </div>";
             }
         }
     }

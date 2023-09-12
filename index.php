@@ -3,7 +3,7 @@
 
 <?php 
     // show post on index page
-    $posts = $conn->query("SELECT * FROM posts");
+    $posts = $conn->query("SELECT * FROM posts LIMIT 3");
     $posts->execute();
     $rows = $posts->fetchAll(PDO::FETCH_OBJ);
     
@@ -11,11 +11,28 @@
     $categories->execute();
     $category = $categories->fetchAll(PDO::FETCH_OBJ);
 
-?>
 
+
+?>
+    <!-- Category -->
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <h3 class="mb-5">Categories</h3>
+        <br><br>
+        <?php foreach ($category as $cat):?>
+            <div class="col-md-6">
+                <a href="http://localhost/CleanBlog/categories/category.php?cat_id=<?php echo $cat->id; ?>">
+                    <div class="alert alert-dark bg-dark text-center text-white" role="alert">
+                        <?php echo $cat->name; ?>
+                    </div>
+                </a>
+            </div>    
+        <?php endforeach; ?>
+    </div>
+
+    <br><br><br>
+    <!-- Contents -->
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-            <?php echo "Hello, " .  $_SESSION['username']; ?>
             
         <?php foreach($rows as $row): ?>
             <!-- Post preview-->
@@ -38,18 +55,5 @@
         </div>
     </div>
 
-    <!-- Category -->
-<div class="row gx-4 gx-lg-5 justify-content-center">
-    <h3>Categories</h3>
-    <br><br>
-    <?php foreach ($category as $cat):?>
-        <div class="col-md-6">
-            <a href="http://localhost/CleanBlog/categories/category.php?cat_id=<?php echo $cat->id; ?>">
-                <div class="alert alert-dark bg-dark text-center text-white" role="alert">
-                    <?php echo $cat->name; ?>
-                </div>
-            </a>
-        </div>    
-    <?php endforeach; ?>
-</div>
+
 <?php require "includes/footer.php"; ?>

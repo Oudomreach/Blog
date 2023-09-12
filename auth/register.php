@@ -10,7 +10,9 @@
   if (isset($_POST['submit'])) {
     // echo "submitted";
     if ($_POST['username'] == '' OR $_POST['email'] == '' OR $_POST['password'] == '') {
-      echo "Type somethings in the input";
+      echo "<div class='alert alert-danger text-center text-white role='alert'>
+              Type somethings in the input
+            </div>";
     }
     else{
       $username = $_POST['username'];
